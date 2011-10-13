@@ -51,7 +51,7 @@ namespace FluentMigrator.Expressions
         /// Downloads the script from source control and updates the <see cref="ExecuteSqlScriptExpression.SqlScript"/> to the downloaded revision
         /// </summary>
         /// <param name="revision">The revision to be downloaded</param>
-        public void FromSourceControl(int revision)
+        public void FromSourceControl<T>(T revision)
         {
             var revisionScript = Path.Combine(Path.GetDirectoryName(_expression.SqlScript) ?? "",
                                               Path.GetFileNameWithoutExtension(_expression.SqlScript) + "_" + revision +
@@ -103,7 +103,7 @@ namespace FluentMigrator.Expressions
         /// <param name="sourceUri">The relative path to the file to be retrieved</param>
         /// <param name="revision">The revision to return</param>
         /// <param name="destination">The location to save the file</param>
-        void GetFile(string sourceUri, int revision, string destination);
+        void GetFile<T>(string sourceUri, T revision, string destination);
     }
 
     /// <summary>
@@ -138,11 +138,11 @@ namespace FluentMigrator.Expressions
         /// <param name="sourceUri">The relative path to the file to be retrieved</param>
         /// <param name="revision">The revision to return</param>
         /// <param name="destination">The location to save the file</param>
-        public void GetFile(string sourceUri, int revision, string destination)
+        public void GetFile<T>(string sourceUri, T revision, string destination)
         {
             using (var client = new SharpSvn.SvnClient())
             {
-                client.Export(new SvnUriTarget(Settings.BaseUri + sourceUri, new SvnRevision(revision)), destination);
+                client.Export(new SvnUriTarget(Settings.BaseUri + sourceUri, new SvnRevision(int.Parse(revision.ToString()))), destination);
             }  
         }
 

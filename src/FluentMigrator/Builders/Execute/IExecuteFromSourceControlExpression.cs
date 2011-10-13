@@ -29,7 +29,7 @@ namespace FluentMigrator.Builders.Execute
         /// <summary>
         /// Execute the specified item from source control revision
         /// </summary>
-        /// <param name="revision">The revision to be executed</param>
-        void FromSourceControl(int revision);
+        /// <param name="revision">The revision or changeset to be executed</param>
+        void FromSourceControl<T>(T revision);
     }
 }
