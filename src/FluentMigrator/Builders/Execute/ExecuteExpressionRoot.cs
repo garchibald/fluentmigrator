@@ -19,7 +19,6 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using FluentMigrator.Expressions;
 using FluentMigrator.Infrastructure;
 
@@ -40,10 +39,11 @@ namespace FluentMigrator.Builders.Execute
 			_context.Expressions.Add(expression);
 		}
 
-		public void Script(string pathToSqlScript)
+		public IExecuteFromSourceControlExpression Script(string pathToSqlScript)
 		{
 			var expression = new ExecuteSqlScriptExpression { SqlScript = pathToSqlScript };
 			_context.Expressions.Add(expression);
+		    return new ExecuteScriptFromSourceControlExpression(expression);
 		}
 
 		public void WithConnection(Action<IDbConnection, IDbTransaction> operation)
@@ -61,7 +61,7 @@ namespace FluentMigrator.Builders.Execute
         }
 	}
 
-	public class PerformDBOperationExpression : MigrationExpressionBase
+    public class PerformDBOperationExpression : MigrationExpressionBase
 	{
 		public override void ExecuteWith(IMigrationProcessor processor)
 		{

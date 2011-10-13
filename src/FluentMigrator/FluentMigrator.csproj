@@ -105,6 +105,9 @@
     <AssemblyOriginatorKeyFile>..\FluentMigrator.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="SharpSvn">
+      <HintPath>..\..\lib\SSvn-1.6016.1637\SharpSvn\SharpSvn.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -153,7 +156,9 @@
     <Compile Include="Builders\Delete\Index\IDeleteIndexOnColumnSyntax.cs" />
     <Compile Include="Builders\Delete\Table\DeleteTableExpressionBuilder.cs" />
     <Compile Include="Builders\Execute\ExecuteExpressionRoot.cs" />
+    <Compile Include="Expressions\ExecuteScriptFromSourceControlExpression.cs" />
     <Compile Include="Builders\Execute\IExecuteExpressionRoot.cs" />
+    <Compile Include="Builders\Execute\IExecuteFromSourceControlExpression.cs" />
     <Compile Include="Builders\ExpressionBuilderWithColumnTypesBase.cs" />
     <Compile Include="Builders\IfDatabase\IfDatabaseExpressionRoot.cs" />
     <Compile Include="Builders\IfDatabase\IIfDatabaseExpressionRoot.cs" />

@@ -1,6 +1,7 @@
-#region License
+﻿#region License
 // 
 // Copyright (c) 2007-2009, Sean Chambers <schambers80@gmail.com>
+// Copyright (c) 2011, Grant Archibald
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,17 +17,19 @@
 //
 #endregion
 
-using System;
-using System.Data;
 using FluentMigrator.Infrastructure;
 
 namespace FluentMigrator.Builders.Execute
 {
-	public interface IExecuteExpressionRoot : IFluentSyntax
-	{
-		void Sql(string sqlStatement);
-        IExecuteFromSourceControlExpression Script(string pathToSqlScript);		
-		void WithConnection(Action<IDbConnection, IDbTransaction> operation);
-        void EmbeddedScript(string EmbeddedSqlScriptName);
-	}
+    /// <summary>
+    /// Extends excution of statements from source control
+    /// </summary>
+    public interface IExecuteFromSourceControlExpression : IFluentSyntax
+    {
+        /// <summary>
+        /// Execute the specified item from source control revision
+        /// </summary>
+        /// <param name="revision">The revision to be executed</param>
+        void FromSourceControl(int revision);
+    }
 }
